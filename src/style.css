@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  text-align: center;
+  border: 1px solid black;
+  margin: 30px 100px 0;
+}
+.container h4 {
+  text-decoration: underline;
+  font-size: 40px;
+  padding: 20px 0;
+}
+.search input {
+  width: 600px;
+  height: 30px;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 10px;
+}
+.search button {
+  height: 45px;
+  padding: 5px;
+  font-size: 20px;
+  width: 200px;
+  margin-left: 5px;
+}
+.search {
+  margin-bottom: 20px;
+}
+.weather_data {
+  margin-bottom: 30px;
+}
+.weather_data h2 {
+  padding: 10px;
+  font-size: 28px;
+}
+.weather_data h3 {
+  padding: 10px;
+  font-size: 20px;
+}
+.weather_data h1 {
+  padding: 10px;
+  font-size: 70px;
+}
+.weather_data p {
+  padding: 10px;
+  font-size: 25px;
+}
+.history {
+  margin: 20px;
+}
+.history p {
+  font-size: 25px;
+  font-weight: bold;
+}
+table {
+  text-align: left;
+  overflow: auto;
+  width: 80%;
+  margin: 0 auto;
+  display: table;
+  padding: 10px 100px;
+  width: 100%;
+}
+table th {
+  background-color: white;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: left;
+  color: #185875;
+  padding: 8px;
+}
+table td {
+  text-align: center;
+  font-weight: normal;
+  font-size: 25px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 2px -2px #0e1119;
+}
+table button {
+  width: 85px;
+  font-size: 23px;
+  padding: 5px;
+  border-radius: 11%;
+  border: 0;
+  -webkit-border-radius: 11%;
+  -moz-border-radius: 11%;
+  -ms-border-radius: 11%;
+  -o-border-radius: 11%;
+}
+.msg {
+  text-align: center;
+  margin-top: 30px;
+}
+.msg h1 {
+  padding-bottom: 20px;
+}
+.msg button {
+  font-size: 20px;
+  width: 100px;
+  height: 40px;
+  margin-right: 10px;
+}
