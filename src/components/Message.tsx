@@ -1,15 +1,17 @@
 import {memo, useCallback} from 'react';
 
 interface MessageProps {
-setMessage: Function;
+setMessage: (value: boolean | ((prevMessage: boolean) => boolean)) => void;
 }
 
 const Message = ({setMessage}: MessageProps) => {
 
+    const continueBtn = useCallback(() =>()=> {setMessage(false)}, [setMessage])
+
     return(
         <div className='msg'>
             <h1>Please Make sure that the city is correct</h1>
-            <button onClick={useCallback( () => {setMessage(false)},[setMessage])}>Got It</button>
+            <button onClick={continueBtn}>Got It</button>
         </div>
     )
 } 

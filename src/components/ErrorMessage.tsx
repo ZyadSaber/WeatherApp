@@ -1,17 +1,17 @@
 import {memo, useCallback} from 'react';
 
 interface ErrorMessageProps {
-setError: Function;
+setError: (value: boolean | ((prevError: boolean) => boolean)) => void;
 setCityName: Function;
 search: string;
 }
 
 const ErrorMessage = ({setError, setCityName, search}: ErrorMessageProps) => {
 
-    const continueBtn = useCallback (() => {
+            const continueBtn = useCallback(() =>()=> {
                 setCityName(search)
                 setError(false)
-            }, [setCityName, search, setError]);
+        }, [setCityName, search, setError])
 
             const edit = useCallback(() => {setError(false)}, [setError])
 
