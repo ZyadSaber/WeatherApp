@@ -7,9 +7,9 @@ setData: Function,
 
 const HistoryList = ( {data, setData}: WeatherViewProps ) => {
 
-const deleteItem = useCallback((itemDate: string) => {
-    setData(data.filter((items: {date: string}) => items.date !== itemDate));
-}, [data, setData]);
+const deleteEtc = useCallback((itemDate: string) => ()=>{setData(data.filter((items: {date: string}) => items.date !== itemDate))}, [data, setData])
+
+console.log(typeof(setData))
 
     return(
              <div className="history">
@@ -28,11 +28,11 @@ const deleteItem = useCallback((itemDate: string) => {
                     weather: string
                 }) => {
             return(
-                <tr>
+                <tr key={item.date}>
                     <td>{item.date}</td>
                     <td>{item.city}</td>
                     <td>{item.weather}</td>
-                    <td><button onClick={() => {deleteItem(item.date)}}>Delete</button></td>
+                    <td><button onClick={deleteEtc(item.date)}>Delete</button></td>
                 </tr>
             )
         })}

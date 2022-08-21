@@ -10,7 +10,7 @@ import useFetch from './hooks/useFetch';
 function App() {
 const [cityName, setCityName] = useState('');
   const url = 'http://api.weatherapi.com/v1/current.json?key=f7b3bf170e95461093b181641221508&q='+cityName+'&aqi=no';
-  const {data, setData, current, search, setSearch, post} = useFetch(url)
+  const {data, setData, current, search, setSearch, localStorageSaveCHK} = useFetch(url)
   const [error, setError] = useState<boolean>(false);
 const [message, setMessage] = useState<boolean>(false);
 
@@ -18,25 +18,18 @@ const [message, setMessage] = useState<boolean>(false);
     setSearch(event.target.value);
   }, [setSearch]);
 
-   const handleSearchButton = () => {
-    if (search.length === 0) {
-      setMessage(true);
-      setError(false);
-    }else if (search.length <= 3) {
-      setError(true);
-      setMessage(false);
-    }else {
-      setCityName(search);
-    };
-  };
+
+  const handleSearchButton = useCallback(()=>{
+    search.length === 0 ? setMessage(true) : search.length <= 3 ? setError(true) : setCityName(search)
+  },[search])
   
   useEffect(()=>{
     window.localStorage.getItem('data') !== null ? setData(JSON.parse(localStorage.getItem('data') || "")) : setData([]);
   },[]);
 
     useEffect(() => {
-      if (post === true) {localStorage.setItem('data', JSON.stringify(data))};
-    }, [data, post, setData]);
+      if (localStorageSaveCHK === true) {localStorage.setItem('data', JSON.stringify(data))};
+    }, [data, localStorageSaveCHK, setData]);
 
 
   return (
@@ -49,7 +42,7 @@ const [message, setMessage] = useState<boolean>(false);
       <h4>Weather App</h4>
       <div className="search">
         <input type="text" placeholder="Type a city" value={search} onChange={handleSearch}/>
-        <button onClick={() => {handleSearchButton()}}>Search</button>
+        <button onClick={handleSearchButton}>Search</button>
       </div>
       <WeatherView current={current} />
       <HistoryList setData={setData} data={data} />
