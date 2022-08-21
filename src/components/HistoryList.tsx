@@ -1,11 +1,15 @@
 import { memo, useCallback } from 'react';
 
-const HistoryList: any = ( {data, setData}: any ) => {
+interface WeatherViewProps {
+data:{date: string, city: string, weather: string}[] ,
+setData: Function,
+};
 
-const deleteItem = useCallback((itemDate: any) => {
-    
-    setData(data.filter((items: any) => items.date !== itemDate));
-}, [data, setData]); 
+const HistoryList = ( {data, setData}: WeatherViewProps ) => {
+
+const deleteItem = useCallback((itemDate: string) => {
+    setData(data.filter((items: {date: string}) => items.date !== itemDate));
+}, [data, setData]);
 
     return(
              <div className="history">
@@ -18,7 +22,11 @@ const deleteItem = useCallback((itemDate: any) => {
                 <th>Action</th>
             </thead>
             <tbody>
-                { data.map((item: any) => {
+                { data.map((item: {
+                    date: string,
+                    city: string,
+                    weather: string
+                }) => {
             return(
                 <tr>
                     <td>{item.date}</td>
@@ -32,6 +40,6 @@ const deleteItem = useCallback((itemDate: any) => {
         </table>
       </div>
     )
-}
+};
 
-export default memo(HistoryList)
+export default memo(HistoryList);

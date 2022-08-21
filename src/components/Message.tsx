@@ -1,6 +1,10 @@
 import {memo, useCallback} from 'react';
 
-const Message = ({setMessage}: any) => {
+interface MessageProps {
+setMessage: Function;
+}
+
+const Message = ({setMessage}: MessageProps) => {
 
     return(
         <div className='msg'>

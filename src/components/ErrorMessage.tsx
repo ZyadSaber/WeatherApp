@@ -1,15 +1,25 @@
 import {memo, useCallback} from 'react';
 
-const ErrorMessage = ({setError, get_data, url}: any) => {
+interface ErrorMessageProps {
+setError: Function;
+getData: Function;
+url: string;
+}
+
+const ErrorMessage = ({setError, getData, url}: ErrorMessageProps) => {
+
+    const continueBtn = useCallback (() => {
+                getData(url)
+                setError(false)
+            }, [getData, setError, url]);
+
+            const edit = useCallback(() => {setError(false)}, [setError])
 
     return(
         <div className='msg'>
             <h1>the city you enter is too short do you to continue or edit</h1>
-            <button onClick={ useCallback (() => {
-                get_data(url)
-                setError(false)
-            }, [get_data, setError, url])}>Continue</button>
-            <button onClick={() => {setError(false)}}>Edit</button>
+            <button onClick={continueBtn}>Continue</button>
+            <button onClick={edit}>Edit</button>
         </div>
     )
 } 
